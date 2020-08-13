@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 面向接口开发 -->
+<mapper namespace="com.bw.mapper.EmpMapper">
+
+	<select id="selectEmp" resultType="map">
+		select * from emp e where 1=1
+		<if test="empname!='' and empname!=null ">
+			and e.empname like '%{empname}%'
+		</if>
+	</select>
+
+	<select id="selectEmpById" resultType="Emp">
+		select * from emp where empid=${value}
+	</select>
+	
+	<select id="getDepartList" resultType="map">
+		select * from depart d where 1=1
+	</select>
+	
+	<select id="getJobList" resultType="map">
+		select * from job j where 1=1
+	</select>
+	
+	<insert id="insertEmp">
+	insert into emp (empname,empdesc,birth,departid,jobid,age,sex) values
+	(#{empname},#{empdesc},#{birth},#{departid},#{jobid},#{age},#{sex})
+	</insert>
+	
+	<delete id="deleteEmp">
+		delete from emp where empid=${value}
+	</delete>
+
+</mapper>
